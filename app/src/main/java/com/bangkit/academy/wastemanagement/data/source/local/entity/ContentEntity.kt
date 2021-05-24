@@ -19,6 +19,9 @@ data class ContentEntity(
     var categoryContent: String,
 
     @ColumnInfo(name = "content")
-    var content: String
+    var content: String,
+
+    @ColumnInfo(name = "isBookmarked")
+    var isBookmarked: Boolean = false
 
 )

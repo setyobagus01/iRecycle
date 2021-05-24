@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">3R Waste</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">3R Waste</string>
+    <string name="title_dashboard">3R Waste</string>
+    <string name="title_notifications">3R Waste</string>
+    <string name="heading_text">Olah Sampah Lebih Baik</string>
+    <string name="total_scanned_text">You’ve scanned 3 out of 12 classes. Keep it up!</string>
+    <string name="item_scanned">Item Scanned</string>
+    <string name="biological">Biological</string>
 </resources>

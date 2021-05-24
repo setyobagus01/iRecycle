@@ -16,6 +16,39 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView.Colored</item>
+        <item name="bottomNavigationStyle">@style/Theme.3RWaste.BottomNavigationView.Colored</item>
+
+    </style>
+
+    <style name="Theme.3RWaste.TextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textAppearance">@style/Theme.3RWaste.Body1</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:lineSpacingExtra">@dimen/min_line_spacing_for_content</item>
+    </style>
+
+    <style name="Theme.3RWaste.Heading1" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textAppearance">@style/Theme.3RWaste.Headline1</item>
+        <item name="android:lineSpacingExtra">15dp</item>
+    </style>
+
+    <style name="Theme.3RWaste.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="fontFamily">@font/mavenpro_bold</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+
+
+    <style name="Theme.3RWaste.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">@font/mavenpro_bold</item>
+        <item name="android:textSize">19.2sp</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+    
+    <style name="Theme.3RWaste.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/mavenpro_regular</item>
+    </style>
+
+    <style name="Theme.3RWaste.BottomNavigationView.Colored" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="fontFamily">@font/mavenpro_regular</item>
     </style>
 </resources>
