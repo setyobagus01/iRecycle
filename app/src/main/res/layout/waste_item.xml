@@ -10,7 +10,7 @@
     android:background="@drawable/ic_card_shape">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/wasteName"
         style="@style/Theme.3RWaste.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,14 +23,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/scannedCount"
         style="@style/Theme.3RWaste.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="156dp"
-        android:text="10 items"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
+        android:text="@string/item_count"
+        app:layout_constraintBottom_toBottomOf="@+id/wasteName"
+        app:layout_constraintStart_toEndOf="@+id/wasteName"
+        app:layout_constraintTop_toTopOf="@+id/wasteName"
         app:layout_constraintVertical_bias="0.0" />
 
 

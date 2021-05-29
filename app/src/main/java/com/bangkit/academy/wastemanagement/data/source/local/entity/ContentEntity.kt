@@ -21,6 +21,9 @@ data class ContentEntity(
     @ColumnInfo(name = "content")
     var content: String,
 
+    @ColumnInfo(name = "imageUrl")
+    var imageUrl: String,
+
     @ColumnInfo(name = "isBookmarked")
     var isBookmarked: Boolean = false
 

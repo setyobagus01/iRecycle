@@ -7,4 +7,7 @@
     <string name="total_scanned_text">You’ve scanned 3 out of 12 classes. Keep it up!</string>
     <string name="item_scanned">Item Scanned</string>
     <string name="biological">Biological</string>
+    <string name="item_count">10 items</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
