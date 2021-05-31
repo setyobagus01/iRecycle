@@ -1,7 +1,6 @@
-package com.bangkit.academy.wastemanagement.data.source
+package com.bangkit.academy.wastemanagement.data
 
 import com.bangkit.academy.wastemanagement.data.source.remote.network.ApiResponse
-import com.bangkit.academy.wastemanagement.utils.DataState
 import kotlinx.coroutines.flow.*
 
 abstract class NetworkBoundResource<ResultType, RequestType> {

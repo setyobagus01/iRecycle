@@ -1,4 +1,4 @@
-package com.bangkit.academy.wastemanagement.utils
+package com.bangkit.academy.wastemanagement.data
 
 sealed class DataState<out R> {
     data class Success<out T>(val data: T): DataState<T>()

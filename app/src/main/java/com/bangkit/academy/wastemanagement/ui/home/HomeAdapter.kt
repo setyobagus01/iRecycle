@@ -26,7 +26,7 @@ class HomeAdapter : PagedListAdapter<WasteEntity, HomeAdapter.HomeViewHolder>(DI
         RecyclerView.ViewHolder(binding.root) {
         fun bind(waste: WasteEntity) {
             with(binding) {
-                wasteName.text = waste.className
+                wasteName.text = waste.wasteType
             }
         }
 

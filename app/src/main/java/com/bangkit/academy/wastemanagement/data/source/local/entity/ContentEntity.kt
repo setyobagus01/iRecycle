@@ -16,7 +16,7 @@ data class ContentEntity(
     var titleContent: String,
 
     @ColumnInfo(name = "categoryTitle")
-    var categoryContent: String,
+    var wasteType: String,
 
     @ColumnInfo(name = "content")
     var content: String,

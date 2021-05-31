@@ -13,8 +13,8 @@ data class WasteEntity(
     var id: Int,
 
     @ColumnInfo(name = "className")
-    var className: String,
+    var wasteType: String,
 
     @ColumnInfo(name = "classDescription")
-    var classDescription: String
+    var description: String
 )
