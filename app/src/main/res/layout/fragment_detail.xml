@@ -1,14 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.detail.DetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.detail.DetailFragment">
+
+            <TextView
+                android:id="@+id/textView5"
+                style="@style/Theme.3RWaste.Headline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Result"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wasteImg" />
+
+
+            <!-- Result 1 -->
+
+            <TextView
+                android:id="@+id/result1"
+                style="@style/Theme.3RWaste.TextView.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Biological"
+                app:layout_constraintEnd_toStartOf="@+id/textView5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+            <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                android:id="@+id/circularProgressBar1"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="16dp"
+                app:cpb_background_progressbar_color="#F0C1E8"
+                app:cpb_background_progressbar_width="10dp"
+                app:cpb_progress="90"
+                app:cpb_progress_direction="to_right"
+                app:cpb_progressbar_color="@color/primaryColor"
+                app:cpb_progressbar_width="10dp"
+                app:cpb_round_border="false"
+                app:layout_constraintEnd_toEndOf="@+id/result1"
+                app:layout_constraintStart_toStartOf="@+id/result1"
+                app:layout_constraintTop_toBottomOf="@+id/result1" />
+
+            <TextView
+                android:id="@+id/modelPercentage1"
+                style="@style/Theme.3RWaste.TextView.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="90%"
+                app:layout_constraintBottom_toBottomOf="@+id/circularProgressBar1"
+                app:layout_constraintEnd_toEndOf="@+id/circularProgressBar1"
+                app:layout_constraintStart_toStartOf="@+id/circularProgressBar1"
+                app:layout_constraintTop_toTopOf="@+id/circularProgressBar1" />
+
+            <!-- Result 2 -->
+
+            <TextView
+                android:id="@+id/result2"
+                style="@style/Theme.3RWaste.TextView.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Battery"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView5"
+                app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+            <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                android:id="@+id/circularProgressBar2"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="16dp"
+                app:cpb_background_progressbar_color="#F0C1E8"
+                app:cpb_background_progressbar_width="10dp"
+                app:cpb_progress="32"
+                app:cpb_progress_direction="to_right"
+                app:cpb_progressbar_color="@color/primaryColor"
+                app:cpb_progressbar_width="10dp"
+                app:cpb_round_border="false"
+                app:layout_constraintEnd_toEndOf="@+id/result2"
+                app:layout_constraintStart_toStartOf="@+id/result2"
+                app:layout_constraintTop_toBottomOf="@+id/result2" />
+
+            <TextView
+                android:id="@+id/modelPercentage2"
+                style="@style/Theme.3RWaste.TextView.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="32%"
+                app:layout_constraintBottom_toBottomOf="@+id/circularProgressBar2"
+                app:layout_constraintEnd_toEndOf="@+id/circularProgressBar2"
+                app:layout_constraintStart_toStartOf="@+id/circularProgressBar2"
+                app:layout_constraintTop_toTopOf="@+id/circularProgressBar2" />
+
+            <!-- Result 3 -->
+
+            <TextView
+                android:id="@+id/result3"
+                style="@style/Theme.3RWaste.TextView.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cardboard"
+                app:layout_constraintEnd_toEndOf="@+id/textView5"
+                app:layout_constraintStart_toStartOf="@+id/textView5"
+                app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+            <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                android:id="@+id/circularProgressBar3"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="16dp"
+                app:cpb_background_progressbar_color="#F0C1E8"
+                app:cpb_background_progressbar_width="10dp"
+                app:cpb_progress="45"
+                app:cpb_progress_direction="to_right"
+                app:cpb_progressbar_color="@color/primaryColor"
+                app:cpb_progressbar_width="10dp"
+                app:cpb_round_border="false"
+                app:layout_constraintEnd_toEndOf="@+id/result3"
+                app:layout_constraintStart_toStartOf="@+id/result3"
+                app:layout_constraintTop_toBottomOf="@+id/result3" />
+
+            <TextView
+                android:id="@+id/modelPercentage3"
+                style="@style/Theme.3RWaste.TextView.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="45%"
+                app:layout_constraintBottom_toBottomOf="@+id/circularProgressBar3"
+                app:layout_constraintEnd_toEndOf="@+id/circularProgressBar3"
+                app:layout_constraintStart_toStartOf="@+id/circularProgressBar3"
+                app:layout_constraintTop_toTopOf="@+id/circularProgressBar3" />
+
+            <ImageView
+                android:id="@+id/wasteImg"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="#F0C1E8" />
+
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/Theme.3RWaste.TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/type_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/circularProgressBar3" />
+
+            <TextView
+                android:id="@+id/wasteType"
+                style="@style/Theme.3RWaste.Headline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/mavenpro_bold"
+                android:text="Biological"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <TextView
+                android:id="@+id/wasteDescription"
+                style="@style/Theme.3RWaste.TextView"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/dummy_description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wasteType" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="300dp" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/ic_button_shape"
+        android:gravity="center"
+        android:text="@string/submit" />
+
+</RelativeLayout>

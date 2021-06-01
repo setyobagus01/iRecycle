@@ -1,42 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment"
-    android:padding="16dp">
+    >
 
-    <TextView
-        android:id="@+id/textView"
-        style="@style/Theme.3RWaste.Heading1"
-        android:layout_width="@dimen/min_width_for_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/distance_between_content"
-        android:text="@string/heading_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="364dp"
-        android:layout_height="152dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/ic_card_shape"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topContainer"
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        android:background="@drawable/ic_container_shape">
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/Theme.3RWaste.Heading1"
+            android:layout_width="@dimen/min_width_for_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="72dp"
+            android:text="@string/heading_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/total_scanned_title"
             style="@style/Theme.3RWaste.Headline2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:text="Total Item Scanned" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="Total Item Scanned"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <TextView
             android:id="@+id/total_scanned_description"
@@ -44,44 +42,54 @@
             android:layout_width="@dimen/min_width_for_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/total_scanned_title"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:text="@string/total_scanned_text" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/total_scanned_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/total_scanned_title" />
 
         <TextView
-            android:layout_toEndOf="@id/total_scanned_description"
+            android:id="@+id/textView4"
             style="@style/Theme.3RWaste.Headline2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/total_scanned_description"
             android:background="@drawable/ic_circle_shape"
             android:gravity="center_vertical"
             android:paddingStart="39dp"
             android:paddingEnd="39dp"
-            android:layout_marginStart="@dimen/distance_between_content"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:text="30" />
+            android:text="30"
+            app:layout_constraintBottom_toBottomOf="@+id/total_scanned_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/total_scanned_description"
+            app:layout_constraintTop_toTopOf="@+id/total_scanned_title" />
 
-    </RelativeLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <TextView
         android:id="@+id/textView3"
+        android:layout_below="@id/topContainer"
         style="@style/Theme.3RWaste.Headline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:text="@string/item_scanned"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+        android:text="@string/item_scanned" />
+
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/textView3"
         android:id="@+id/rvWasteCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:layout_editor_absoluteX="16dp"
+        android:layout_marginEnd="8dp"
         tools:listitem="@layout/waste_item" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

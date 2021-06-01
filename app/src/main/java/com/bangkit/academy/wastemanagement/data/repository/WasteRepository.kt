@@ -9,7 +9,9 @@ import com.bangkit.academy.wastemanagement.domain.model.Content
 import com.bangkit.academy.wastemanagement.domain.model.Image
 import com.bangkit.academy.wastemanagement.domain.model.Waste
 import com.bangkit.academy.wastemanagement.domain.repository.IWasteRepository
+import javax.inject.Singleton
 
+@Singleton
 class WasteRepository constructor(
     private val localDataSource: LocalDataSource,
     private val remoteDataSource: RemoteDataSource,

@@ -10,4 +10,7 @@
     <string name="item_count">10 items</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="type_name">Type Waste</string>
+    <string name="dummy_description">Biological waste is waste that consists mainly of organic materials. This includes green waste, food waste as well as paper waste, and even biodegradable plastics.</string>
+    <string name="submit">Submit</string>
 </resources>

@@ -13,7 +13,7 @@ import com.bangkit.academy.wastemanagement.data.source.local.entity.WasteEntity
 )
 abstract class WasteDatabase : RoomDatabase() {
     companion object {
-        val DATABASE_NAME: String = "WasteManagement.db"
+        const val DATABASE_NAME: String = "WasteManagement.db"
     }
     abstract fun wasteDao(): WasteDao
 }
