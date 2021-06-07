@@ -3,6 +3,7 @@ package com.bangkit.academy.wastemanagement.core.data.source.local.room
 import androidx.room.*
 import com.bangkit.academy.wastemanagement.core.data.source.local.entity.ContentEntity
 import com.bangkit.academy.wastemanagement.core.data.source.local.entity.ImageEntity
+import com.bangkit.academy.wastemanagement.core.data.source.local.entity.PredictEntity
 import com.bangkit.academy.wastemanagement.core.data.source.local.entity.WasteEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -11,11 +12,20 @@ interface WasteDao {
     @Query("SELECT * FROM wasteEntity")
     fun getWaste(): Flow<List<WasteEntity>>
 
-    @Query("SELECT * FROM wasteEntity WHERE idClass = :id")
+    @Query("SELECT * FROM wasteEntity WHERE id = :id")
     fun getWasteById(id: Int): Flow<WasteEntity>
+
+    @Query("SELECT * FROM wasteEntity WHERE wasteType = :wasteType")
+    fun getWasteByType(wasteType: String): Flow<WasteEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertWaste(waste: List<WasteEntity>)
+
+    @Query("SELECT * FROM predictEntity")
+    fun getPrediction(): Flow<List<PredictEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertPrediction(prediction: List<PredictEntity>)
 
     @Query("SELECT * FROM imageEntity")
     fun getImages(): Flow<List<ImageEntity>>
@@ -26,7 +36,7 @@ interface WasteDao {
     @Query("SELECT * FROM contentEntity")
     fun getContent(): Flow<List<ContentEntity>>
 
-    @Query("SELECT * FROM contentEntity WHERE idContent = :id")
+    @Query("SELECT * FROM contentEntity WHERE id = :id")
     fun getContentById(id: Int): Flow<ContentEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

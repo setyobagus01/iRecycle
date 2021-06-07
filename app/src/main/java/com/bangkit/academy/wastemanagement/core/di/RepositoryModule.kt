@@ -5,6 +5,7 @@ import com.bangkit.academy.wastemanagement.core.data.source.local.LocalDataSourc
 import com.bangkit.academy.wastemanagement.core.data.source.remote.RemoteDataSource
 import com.bangkit.academy.wastemanagement.core.domain.repository.IWasteRepository
 import com.bangkit.academy.wastemanagement.core.utils.ContentMapper
+import com.bangkit.academy.wastemanagement.core.utils.PredictMapper
 import com.bangkit.academy.wastemanagement.core.utils.WasteMapper
 import dagger.Module
 import dagger.Provides
@@ -22,6 +23,7 @@ object RepositoryModule {
         localDataSource: LocalDataSource,
         remoteDataSource: RemoteDataSource,
         contentMapper: ContentMapper,
-        wasteMapper: WasteMapper
-    ): IWasteRepository =  WasteRepository(localDataSource, remoteDataSource, contentMapper, wasteMapper)
+        wasteMapper: WasteMapper,
+        predictMapper: PredictMapper
+    ): IWasteRepository =  WasteRepository(localDataSource, remoteDataSource, contentMapper, wasteMapper, predictMapper)
 }

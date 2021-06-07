@@ -1,18 +1,24 @@
 package com.bangkit.academy.wastemanagement
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toFile
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.bangkit.academy.wastemanagement.core.data.DataState
+import com.bangkit.academy.wastemanagement.core.domain.model.Predict
 import com.bangkit.academy.wastemanagement.databinding.ActivityMainBinding
+import com.bangkit.academy.wastemanagement.detailresult.DetailResult
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -23,6 +29,8 @@ class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding
+
+    private val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,16 +81,43 @@ class MainActivity : AppCompatActivity() {
             val resultCode = result.resultCode
             val data = result.data
 
-            if (resultCode == Activity.RESULT_OK) {
-                //Image Uri will not be null for RESULT_OK
-                val fileUri = data?.data!!
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+                    //Image Uri will not be null for RESULT_OK
+                    val fileUri = data?.data!!
 
-                Log.d("Yay Succeed", fileUri.toString())
+                    mainViewModel.getFile(fileUri.toFile())
+                    mainViewModel.predict.observe(this, { results ->
+                        if (results != null) {
+                            when(results) {
+                                is DataState.Loading -> {
+                                    Toast.makeText(this@MainActivity, "Upload", Toast.LENGTH_SHORT).show()
 
-            } else if (resultCode == ImagePicker.RESULT_ERROR) {
-                Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
+                                }
+                                is DataState.Success -> {
+                                    Log.d("Horrayyyy Bisa", results.data.toString())
+                                    val intent = Intent(this@MainActivity, DetailResult::class.java).apply {
+                                        putParcelableArrayListExtra(DetailResult.EXTRA_DATA, results.data as ArrayList<Predict>)
+                                        putExtra(DetailResult.EXTRA_IMAGE, fileUri.toString())
+                                    }
+                                    startActivity(intent)
+                                }
+
+                                is DataState.Error -> {
+
+                                }
+                            }
+                        }
+                    })
+                    Log.d("Yay Succeed", fileUri.toString())
+
+                }
+                ImagePicker.RESULT_ERROR -> {
+                    Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 

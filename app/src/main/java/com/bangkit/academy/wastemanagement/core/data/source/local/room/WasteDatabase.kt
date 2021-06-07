@@ -4,10 +4,11 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.bangkit.academy.wastemanagement.core.data.source.local.entity.ContentEntity
 import com.bangkit.academy.wastemanagement.core.data.source.local.entity.ImageEntity
+import com.bangkit.academy.wastemanagement.core.data.source.local.entity.PredictEntity
 import com.bangkit.academy.wastemanagement.core.data.source.local.entity.WasteEntity
 
 @Database(
-    entities = [WasteEntity::class, ImageEntity::class, ContentEntity::class],
+    entities = [WasteEntity::class, ImageEntity::class, ContentEntity::class, PredictEntity::class],
     version = 1,
     exportSchema = false
 )

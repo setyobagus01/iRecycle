@@ -5,17 +5,13 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "wasteEntity")
-data class WasteEntity(
-    @ColumnInfo(name = "id")
-    @PrimaryKey
-    var id: Int,
-
+@Entity(tableName = "predictEntity")
+data class PredictEntity(
     @ColumnInfo(name = "wasteType")
-    @NonNull
+    @PrimaryKey
     var wasteType: String,
 
-    @ColumnInfo(name = "description")
+    @ColumnInfo(name= "prediction")
     @NonNull
-    var description: String
+    var prediction: Float
 )

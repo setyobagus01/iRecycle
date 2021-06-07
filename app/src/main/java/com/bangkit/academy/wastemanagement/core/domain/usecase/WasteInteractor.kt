@@ -1,13 +1,21 @@
 package com.bangkit.academy.wastemanagement.core.domain.usecase
 
+import com.bangkit.academy.wastemanagement.core.data.DataState
 import com.bangkit.academy.wastemanagement.core.domain.model.Content
+import com.bangkit.academy.wastemanagement.core.domain.model.Predict
+import com.bangkit.academy.wastemanagement.core.domain.model.Waste
 import com.bangkit.academy.wastemanagement.core.domain.repository.IWasteRepository
+import kotlinx.coroutines.flow.Flow
+import java.io.File
 import javax.inject.Inject
 
 class WasteInteractor @Inject constructor(private val wasteRepository: IWasteRepository) : WasteUseCase {
     override fun getWaste() = wasteRepository.getWaste()
 
     override fun getWasteById(id: Int) = wasteRepository.getWasteById(id)
+    override fun getWasteByType(wasteType: String): Flow<DataState<Waste>> = wasteRepository.getWasteByType(wasteType)
+
+    override fun getPrediction(pic: File): Flow<DataState<List<Predict>>> = wasteRepository.getPrediction(pic)
 
     override fun getImages() = wasteRepository.getImages()
 
@@ -22,5 +30,6 @@ class WasteInteractor @Inject constructor(private val wasteRepository: IWasteRep
     override fun setBookmarkedContent(content: Content, state: Boolean) {
         return wasteRepository.setBookmarkedContent(content, state)
     }
+
 
 }

@@ -4,17 +4,23 @@ import android.util.Log
 import com.bangkit.academy.wastemanagement.core.data.DataState
 import com.bangkit.academy.wastemanagement.core.data.NetworkBoundResource
 import com.bangkit.academy.wastemanagement.core.data.source.local.LocalDataSource
+import com.bangkit.academy.wastemanagement.core.data.source.local.entity.WasteEntity
 import com.bangkit.academy.wastemanagement.core.data.source.remote.RemoteDataSource
 import com.bangkit.academy.wastemanagement.core.data.source.remote.network.ApiResponse
+import com.bangkit.academy.wastemanagement.core.data.source.remote.network.response.PredictResponse
 import com.bangkit.academy.wastemanagement.core.data.source.remote.network.response.WasteResponse
 import com.bangkit.academy.wastemanagement.core.domain.model.Content
 import com.bangkit.academy.wastemanagement.core.domain.model.Image
+import com.bangkit.academy.wastemanagement.core.domain.model.Predict
 import com.bangkit.academy.wastemanagement.core.domain.model.Waste
 import com.bangkit.academy.wastemanagement.core.domain.repository.IWasteRepository
 import com.bangkit.academy.wastemanagement.core.utils.ContentMapper
+import com.bangkit.academy.wastemanagement.core.utils.PredictMapper
 import com.bangkit.academy.wastemanagement.core.utils.WasteMapper
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.map
+import java.io.File
 import javax.inject.Singleton
 
 @Singleton
@@ -22,7 +28,8 @@ class WasteRepository constructor(
     private val localDataSource: LocalDataSource,
     private val remoteDataSource: RemoteDataSource,
     private val contentMapper: ContentMapper,
-    private val wasteMapper: WasteMapper
+    private val wasteMapper: WasteMapper,
+    private val predictMapper: PredictMapper
 ): IWasteRepository {
     override fun getWaste(): Flow<DataState<List<Waste>>> =
         object : NetworkBoundResource<List<Waste>, List<WasteResponse>>() {
@@ -50,6 +57,52 @@ class WasteRepository constructor(
         TODO("Not yet implemented")
     }
 
+    override fun getWasteByType(wasteType: String): Flow<DataState<Waste>> =
+        object : NetworkBoundResource<Waste, WasteEntity>() {
+            override fun loadFromDB(): Flow<Waste> =
+                localDataSource.getWasteByType(wasteType).map {
+                    wasteMapper.mapFromCacheEntity(it)
+                }
+
+            override fun shouldFetch(data: Waste?): Boolean =
+                false
+
+            override suspend fun createCall(): Flow<ApiResponse<WasteEntity>> =
+                emptyFlow()
+
+            override suspend fun saveCallResult(data: WasteEntity) {
+
+            }
+
+        }.asFlow()
+
+
+
+
+
+
+
+
+    override fun getPrediction(pic: File): Flow<DataState<List<Predict>>> =
+        object : NetworkBoundResource<List<Predict>, List<PredictResponse>>() {
+            override fun loadFromDB(): Flow<List<Predict>> =
+                localDataSource.getPrediction().map { predictMapper.mapFromCacheEntityList(it) }
+
+            override fun shouldFetch(data: List<Predict>?): Boolean =
+                true
+
+
+            override suspend fun createCall(): Flow<ApiResponse<List<PredictResponse>>> =
+                remoteDataSource.getPrediction(pic)
+
+
+            override suspend fun saveCallResult(data: List<PredictResponse>) {
+                val predict = predictMapper.mapFromNetworkEntityList(data)
+                localDataSource.insertPrediction(predict)
+            }
+
+        }.asFlow()
+
     override fun getImages(): Flow<DataState<List<Image>>> {
         TODO("Not yet implemented")
     }
@@ -73,5 +126,7 @@ class WasteRepository constructor(
     override fun setBookmarkedContent(content: Content, state: Boolean) {
         TODO("Not yet implemented")
     }
+
+
 
 }
