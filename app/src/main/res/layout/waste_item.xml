@@ -34,5 +34,14 @@
         app:layout_constraintTop_toTopOf="@+id/wasteName"
         app:layout_constraintVertical_bias="0.0" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+        app:layout_constraintBottom_toBottomOf="@+id/scannedCount"
+        app:layout_constraintStart_toEndOf="@+id/scannedCount"
+        app:layout_constraintTop_toTopOf="@+id/scannedCount" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
     }
 }
 
@@ -30,4 +31,6 @@ ext {
     room_version = "2.3.0"
     hilt_version = "2.35.1"
     paging_version = "2.1.2"
+    coroutines_version = "1.4.3"
+    activity_version = "1.2.3"
 }
