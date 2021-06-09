@@ -1,16 +1,148 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.3RWaste" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.3RWaste" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="android:colorBackground">@color/secondaryLightColor</item>
+        <item name="colorOnBackground">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
+        <item name="colorOnPrimary">@color/primaryTextColor</item>
+        <item name="colorSurface">@color/primaryColor</item>
+        <item name="colorOnSurface">@color/primaryTextColor</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
+        <item name="colorOnSecondary">@color/primaryTextColor</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="bottomNavigationStyle">@style/Theme.3RWaste.BottomNavigationView.Colored</item>
+        <item name="textAppearanceButton">@style/TextAppearance.App.Button</item>
+        <item name="toolbarStyle">@style/Widget.App.Toolbar</item>
+        <!-- Action Model -->
+        <item name="windowActionModeOverlay">true</item>
+        <item name="actionModeStyle">@style/Widget.App.ActionMode</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_baseline_arrow_back_24</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar</item>
+
+    </style>
+
+    <!-- Action Bar -->
+    <style name="Widget.App.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Toolbar</item>
+
+    </style>
+
+    <style name="ThemeOverlay.App.Toolbar" parent="">
+        <item name="colorPrimary">@color/primaryLightColor</item>
+        <item name="colorOnPrimary">@color/primaryColor</item>
+    </style>
+
+    <!-- Context Action Bar -->
+
+    <style name="Widget.App.ActionMode" parent="Widget.AppCompat.ActionMode">
+        <item name="titleTextStyle">?attr/textAppearanceHeadline6</item>
+        <item name="subtitleTextStyle">?attr/textAppearanceSubtitle1</item>
+        <item name="background">@color/primaryLightColor</item>
+    </style>
+
+
+
+    <!-- Text View -->
+
+    <style name="Theme.3RWaste.TextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textAppearance">@style/Theme.3RWaste.Body1</item>
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:lineSpacingExtra">@dimen/min_line_spacing_for_content</item>
+    </style>
+
+    <style name="Theme.3RWaste.TextView.Medium" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textAppearance">@style/Theme.3RWaste.Body2</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <!-- Heading 1 -->
+
+    <style name="Theme.3RWaste.Heading1" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textAppearance">@style/Theme.3RWaste.Headline1</item>
+        <item name="android:lineSpacingExtra">15dp</item>
+    </style>
+
+    <style name="Theme.3RWaste.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="fontFamily">@font/mavenpro_bold</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/primaryColor</item>
+    </style>
+
+    <!-- Heading 2 -->
+
+    <style name="Theme.3RWaste.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">@font/mavenpro_bold</item>
+        <item name="android:textSize">19.2sp</item>
+        <item name="android:textColor">@color/primaryColor</item>
+    </style>
+
+    <!-- Body -->
+
+    <style name="Theme.3RWaste.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/mavenpro_regular</item>
+    </style>
+
+    <style name="Theme.3RWaste.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/mavenpro_medium</item>
+    </style>
+
+    <!-- Bottom Navigation -->
+
+    <style name="Theme.3RWaste.BottomNavigationView.Colored" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="fontFamily">@font/mavenpro_regular</item>
+    </style>
+
+
+    <style name="TextAppearance.App.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/mavenpro_medium</item>
+        <item name="android:fontFamily">@font/mavenpro_medium</item>
+        <item name="android:textColor">@color/primaryLightColor</item>
+    </style>
+
+    <!-- Collapsing Toolbaer -->
+    <style name="TextAppearance.App.CollapsingToolbar.Expanded" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">@color/primaryLightColor</item>
+        <item name="android:fontFamily">@font/mavenpro_medium</item>
+    </style>
+
+    <style name="TextAppearance.App.CollapsingToolbar.Collapsed" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">@color/primaryLightColor</item>
+        <item name="android:fontFamily">@font/mavenpro_medium</item>
+        <item name="backgroundTint">@color/primaryLightColor</item>
+    </style>
+
+    <style name="Theme.App" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="Theme.3RWaste.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="TextAppearance.3RWaste.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/mavenpro_bold</item>
+        <item name="android:fontFamily">@font/mavenpro_bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/primaryLightColor</item>
+        <item name="titleTextColor">@color/primaryLightColor</item>
+    </style>
+
+    <style name="Theme.3RWaste.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.3RWaste.Toolbar</item>
+        <item name="titleTextAppearance">@style/TextAppearance.3RWaste.Headline6</item>
+        <item name="fontFamily">@font/mavenpro_bold</item>
+    </style>
+    <style name="ThemeOverlay.3RWaste.Toolbar" parent="">
+
+        <item name="backgroundTint">@color/primaryColor</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorOnPrimary">@color/primaryLightColor</item>
     </style>
 </resources>
