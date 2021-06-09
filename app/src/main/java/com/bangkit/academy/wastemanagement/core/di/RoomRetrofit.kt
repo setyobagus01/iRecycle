@@ -1,5 +1,6 @@
 package com.bangkit.academy.wastemanagement.core.di
 
+import com.bangkit.academy.wastemanagement.BuildConfig
 import com.bangkit.academy.wastemanagement.core.data.source.remote.retrofit.ApiService
 import dagger.Module
 import dagger.Provides
@@ -31,7 +32,7 @@ object RoomRetrofit {
     @Provides
     fun provideRetrofit(client: OkHttpClient): ApiService {
         return Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("http://192.168.1.6:8080/")
+            .baseUrl(BuildConfig.BASE_URL)
             .client(client)
             .build()
             .create(ApiService::class.java)
