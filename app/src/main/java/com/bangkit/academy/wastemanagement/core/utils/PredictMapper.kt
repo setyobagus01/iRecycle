@@ -24,6 +24,13 @@ class PredictMapper @Inject constructor() {
         return entities.map { mapFromCacheEntity(it) }
     }
 
+    fun mapFromDomain(domainModel: Predict): PredictEntity {
+        return PredictEntity(
+            wasteType = domainModel.wasteType,
+            prediction = domainModel.prediction
+        )
+    }
+
     fun mapFromNetworkEntity(entity: PredictResponse): Predict {
         return Predict(
             wasteType = entity.wasteType,

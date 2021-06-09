@@ -7,6 +7,7 @@ import com.bangkit.academy.wastemanagement.core.data.source.local.LocalDataSourc
 import com.bangkit.academy.wastemanagement.core.data.source.local.entity.WasteEntity
 import com.bangkit.academy.wastemanagement.core.data.source.remote.RemoteDataSource
 import com.bangkit.academy.wastemanagement.core.data.source.remote.network.ApiResponse
+import com.bangkit.academy.wastemanagement.core.data.source.remote.network.response.ContentResponse
 import com.bangkit.academy.wastemanagement.core.data.source.remote.network.response.PredictResponse
 import com.bangkit.academy.wastemanagement.core.data.source.remote.network.response.WasteResponse
 import com.bangkit.academy.wastemanagement.core.domain.model.Content
@@ -17,9 +18,12 @@ import com.bangkit.academy.wastemanagement.core.domain.repository.IWasteReposito
 import com.bangkit.academy.wastemanagement.core.utils.ContentMapper
 import com.bangkit.academy.wastemanagement.core.utils.PredictMapper
 import com.bangkit.academy.wastemanagement.core.utils.WasteMapper
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import java.io.File
 import javax.inject.Singleton
 
@@ -76,13 +80,6 @@ class WasteRepository constructor(
 
         }.asFlow()
 
-
-
-
-
-
-
-
     override fun getPrediction(pic: File): Flow<DataState<List<Predict>>> =
         object : NetworkBoundResource<List<Predict>, List<PredictResponse>>() {
             override fun loadFromDB(): Flow<List<Predict>> =
@@ -103,6 +100,27 @@ class WasteRepository constructor(
 
         }.asFlow()
 
+    override fun getPredictionHistory(): Flow<DataState<List<Predict>>> =
+        object : NetworkBoundResource<List<Predict>, List<PredictResponse>>() {
+            override fun loadFromDB(): Flow<List<Predict>> =
+                localDataSource.getPredictionHistory().map { predictMapper.mapFromCacheEntityList(it) }
+
+            override fun shouldFetch(data: List<Predict>?): Boolean =
+                false
+
+            override suspend fun createCall(): Flow<ApiResponse<List<PredictResponse>>> = emptyFlow()
+            override suspend fun saveCallResult(data: List<PredictResponse>) {
+
+            }
+
+        }.asFlow()
+
+    override fun setImagePrediction(prediction: Predict, imageUrl: String, history: Boolean) {
+        CoroutineScope(Dispatchers.IO).launch {
+            localDataSource.updatePrediction(predictMapper.mapFromDomain(prediction), imageUrl, history)
+        }
+    }
+
     override fun getImages(): Flow<DataState<List<Image>>> {
         TODO("Not yet implemented")
     }
@@ -114,6 +132,27 @@ class WasteRepository constructor(
     override fun getContent(): Flow<DataState<List<Content>>> {
         TODO("Not yet implemented")
     }
+
+    override fun getContentByType(wasteType: String): Flow<DataState<List<Content>>> =
+        object : NetworkBoundResource<List<Content>, List<ContentResponse>>() {
+            override fun loadFromDB(): Flow<List<Content>> =
+                localDataSource.getContentByType(wasteType).map {
+                    contentMapper.mapFromCacheEntityList(it)
+                }
+
+            override fun shouldFetch(data: List<Content>?): Boolean =
+                data == null || data.isEmpty()
+
+
+            override suspend fun createCall(): Flow<ApiResponse<List<ContentResponse>>> =
+                remoteDataSource.getContentByType(wasteType)
+
+            override suspend fun saveCallResult(data: List<ContentResponse>) {
+                val content = contentMapper.mapToCacheEntityList(data)
+                localDataSource.insertContent(content)
+            }
+
+        }.asFlow()
 
     override fun getContentById(id: Int): Flow<DataState<Content>> {
         TODO("Not yet implemented")

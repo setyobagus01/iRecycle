@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/distance_between_items"
-    android:layout_marginBottom="@dimen/activity_horizontal_margin"
     android:background="@drawable/ic_shape_light">
 
     <TextView
@@ -27,20 +26,21 @@
         style="@style/Theme.3RWaste.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
+        android:layout_marginEnd="32dp"
         android:text="@string/item_count"
         app:layout_constraintBottom_toBottomOf="@+id/wasteName"
-        app:layout_constraintStart_toEndOf="@+id/wasteName"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/wasteName"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginEnd="24dp"
         android:src="@drawable/ic_baseline_arrow_forward_ios_24"
         app:layout_constraintBottom_toBottomOf="@+id/scannedCount"
-        app:layout_constraintStart_toEndOf="@+id/scannedCount"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/scannedCount" />
 
 

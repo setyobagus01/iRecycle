@@ -3,18 +3,18 @@ package com.bangkit.academy.wastemanagement.core.data.source.remote.network.resp
 import com.google.gson.annotations.SerializedName
 
 data class ContentResponse(
-    @field:SerializedName("idContent")
+    @field:SerializedName("id")
     var idContent: Int,
 
-    @field:SerializedName("titleContent")
+    @field:SerializedName("title")
     var titleContent: String,
 
     @field:SerializedName("wasteType")
     var wasteType: String,
 
-    @field:SerializedName("content")
-    var content: String,
-
     @field:SerializedName("imageUrl")
-    var imageUrl: String
+    var imageUrl: String,
+
+    @field:SerializedName("content")
+    var content: String
 )

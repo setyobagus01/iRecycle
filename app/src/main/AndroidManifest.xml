@@ -21,8 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.3RWaste"
         android:usesCleartextTraffic="true">
-        <activity android:name=".detailresult.DetailResult"></activity>
-        <activity android:name=".classify.ClassifyActivity" />
+        <activity android:name=".content.detail.DetailContentActivity"></activity>
+        <activity android:name=".content.ContentActivity" />
+        <activity android:name=".detailresult.DetailResult" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">

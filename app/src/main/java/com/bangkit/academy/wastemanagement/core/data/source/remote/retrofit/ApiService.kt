@@ -4,10 +4,7 @@ import com.bangkit.academy.wastemanagement.core.data.source.remote.network.respo
 import com.bangkit.academy.wastemanagement.core.data.source.remote.network.response.PredictResponse
 import com.bangkit.academy.wastemanagement.core.data.source.remote.network.response.WasteResponse
 import okhttp3.MultipartBody
-import retrofit2.http.GET
-import retrofit2.http.Multipart
-import retrofit2.http.POST
-import retrofit2.http.Part
+import retrofit2.http.*
 
 interface ApiService {
     @GET("api/waste")
@@ -15,6 +12,9 @@ interface ApiService {
 
     @GET("api/content")
     suspend fun getContent(): List<ContentResponse>
+
+    @GET("api/content")
+    suspend fun getContentByType(@Query("wasteType") wasteType: String): List<ContentResponse>
 
 
     @POST("api/predict")

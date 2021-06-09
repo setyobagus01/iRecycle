@@ -17,11 +17,17 @@ interface WasteUseCase {
 
     fun getPrediction(pic: File): Flow<DataState<List<Predict>>>
 
+    fun getPredictionHistory(): Flow<DataState<List<Predict>>>
+
+    fun setImagePrediction(prediction: Predict, imageUrl: String, history: Boolean)
+
     fun getImages(): Flow<DataState<List<Image>>>
 
     fun getImageById(id: Int): Flow<DataState<Image>>
 
     fun getContent(): Flow<DataState<List<Content>>>
+
+    fun getContentByType(wasteType: String): Flow<DataState<List<Content>>>
 
     fun getContentById(id: Int): Flow<DataState<Content>>
 

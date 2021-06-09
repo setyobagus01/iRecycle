@@ -23,15 +23,26 @@ class LocalDataSource @Inject constructor(private val wasteDao: WasteDao) {
 
     suspend fun insertPrediction(prediction: List<PredictEntity>) = wasteDao.insertPrediction(prediction)
 
+    suspend fun updatePrediction(prediction: PredictEntity, imageUrl: String, newState: Boolean) {
+        prediction.imageUrl = imageUrl
+        prediction.history = newState
+        wasteDao.updatePrediction(prediction)
+
+    }
+
+    fun getPredictionHistory(): Flow<List<PredictEntity>> = wasteDao.getPredictionHistory()
+
     fun getImages(): Flow<List<ImageEntity>> = wasteDao.getImages()
 
     fun getImageById(id: Int): Flow<ImageEntity> = wasteDao.getImageById(id)
 
     fun getContent(): Flow<List<ContentEntity>> = wasteDao.getContent()
 
+    fun getContentByType(wasteType: String): Flow<List<ContentEntity>> = wasteDao.getContentByType(wasteType)
+
     fun getContentById(id: Int): Flow<ContentEntity> = wasteDao.getContentById(id)
 
-    fun insertContent(content: List<ContentEntity>) = wasteDao.insertContent(content)
+    suspend fun insertContent(content: List<ContentEntity>) = wasteDao.insertContent(content)
 
     fun updateContent(content: ContentEntity, state: Boolean) {
         content.isBookmarked = state

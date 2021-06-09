@@ -31,7 +31,7 @@ object RoomRetrofit {
     @Provides
     fun provideRetrofit(client: OkHttpClient): ApiService {
         return Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://ordinal-skyline-314911.df.r.appspot.com/")
+            .baseUrl("http://192.168.1.6:8080/")
             .client(client)
             .build()
             .create(ApiService::class.java)

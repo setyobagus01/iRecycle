@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.bangkit.academy.wastemanagement.bookmark.BookmarkFragment"
+        android:name="com.bangkit.academy.wastemanagement.history.BookmarkFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
     <fragment
@@ -26,7 +26,7 @@
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
         <action
-            android:id="@+id/action_detailFragment_to_navigation_home"
-            app:destination="@id/navigation_home" />
+            android:id="@+id/action_detailFragment_to_contentFragment"
+            app:destination="@id/contentFragment" />
     </fragment>
 </navigation>

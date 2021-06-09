@@ -6,5 +6,6 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Predict(
     val wasteType: String,
-    val prediction: Float
+    val prediction: Float,
+    var imageUrl: String? = null,
 ): Parcelable

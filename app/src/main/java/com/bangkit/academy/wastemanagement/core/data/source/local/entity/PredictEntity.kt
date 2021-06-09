@@ -13,5 +13,11 @@ data class PredictEntity(
 
     @ColumnInfo(name= "prediction")
     @NonNull
-    var prediction: Float
+    var prediction: Float,
+
+    @ColumnInfo(name = "imageUrl")
+    var imageUrl: String? = null,
+
+    @ColumnInfo(name = "history")
+    var history: Boolean = false
 )

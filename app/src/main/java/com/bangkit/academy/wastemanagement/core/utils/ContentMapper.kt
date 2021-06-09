@@ -29,23 +29,48 @@ class ContentMapper @Inject constructor() {
         )
     }
 
+    fun mapFromCacheEntityList(entities: List<ContentEntity>): List<Content> {
+        return entities.map { mapFromCacheEntity(it) }
+    }
+
     fun mapFromNetworkEntity(entity: ContentResponse): Content {
         return Content(
             idContent = entity.idContent,
             titleContent = entity.titleContent,
             wasteType = entity.wasteType,
-            imageUrl = entity.wasteType,
+            imageUrl = entity.imageUrl,
             content = entity.content
         )
     }
+
+    fun mapToCacheEntity(entity: ContentResponse): ContentEntity {
+        return ContentEntity(
+            idContent = entity.idContent,
+            titleContent = entity.titleContent,
+            wasteType = entity.wasteType,
+            imageUrl = entity.imageUrl,
+            content = entity.content
+        )
+    }
+
 
     fun mapToNetworkEntity(domainModel: Content): ContentResponse {
         return ContentResponse(
             idContent = domainModel.idContent,
             titleContent = domainModel.titleContent,
             wasteType = domainModel.wasteType,
-            imageUrl = domainModel.wasteType,
+            imageUrl = domainModel.imageUrl,
             content = domainModel.content
         )
     }
+
+    fun mapFromNetworkEntityList(entities: List<ContentResponse>): List<Content> {
+        return entities.map{ mapFromNetworkEntity(it) }
+    }
+
+    fun mapToCacheEntityList(entities: List<ContentResponse>): List<ContentEntity> {
+        return entities.map{ mapToCacheEntity(it) }
+    }
+
+
 }

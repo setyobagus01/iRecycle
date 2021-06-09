@@ -50,6 +50,21 @@ class RemoteDataSource @Inject constructor(private val wasteService: ApiService)
         }.flowOn(Dispatchers.IO)
     }
 
+    suspend fun getContentByType(wasteType: String): Flow<ApiResponse<List<ContentResponse>>> {
+        return flow {
+            try {
+                val response = wasteService.getContentByType(wasteType)
+                if (response.isNotEmpty()) {
+                    emit(ApiResponse.Success(response))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: java.lang.Exception) {
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
     suspend fun getPrediction(pic: File): Flow<ApiResponse<List<PredictResponse>>> {
         return flow {
             try {
