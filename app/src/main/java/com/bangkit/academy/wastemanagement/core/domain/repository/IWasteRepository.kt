@@ -19,6 +19,8 @@ interface IWasteRepository {
 
     fun getPredictionHistory(): Flow<DataState<List<Predict>>>
 
+    fun deletePredictionHistory(prediction: Predict)
+
     fun setImagePrediction(prediction: Predict, imageUrl: String, history: Boolean)
 
     fun getImages(): Flow<DataState<List<Image>>>

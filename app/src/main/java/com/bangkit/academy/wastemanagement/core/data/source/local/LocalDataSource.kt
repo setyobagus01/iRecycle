@@ -32,6 +32,8 @@ class LocalDataSource @Inject constructor(private val wasteDao: WasteDao) {
 
     fun getPredictionHistory(): Flow<List<PredictEntity>> = wasteDao.getPredictionHistory()
 
+    suspend fun deletePredictionHistory(prediction: PredictEntity) = wasteDao.deletePredictionHistory(prediction)
+
     fun getImages(): Flow<List<ImageEntity>> = wasteDao.getImages()
 
     fun getImageById(id: Int): Flow<ImageEntity> = wasteDao.getImageById(id)

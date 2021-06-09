@@ -12,11 +12,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toFile
-import com.bangkit.academy.wastemanagement.history.BookmarkFragment
 import com.bangkit.academy.wastemanagement.core.data.DataState
 import com.bangkit.academy.wastemanagement.core.domain.model.Predict
 import com.bangkit.academy.wastemanagement.databinding.ActivityMainBinding
 import com.bangkit.academy.wastemanagement.detailresult.DetailResult
+import com.bangkit.academy.wastemanagement.history.HistoryFragment
 import com.bangkit.academy.wastemanagement.home.HomeFragment
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.appbar.MaterialToolbar
@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_notifications -> {
 
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.nav_host_fragment, BookmarkFragment())
+                        .replace(R.id.nav_host_fragment, HistoryFragment())
                         .addToBackStack(null)
                         .commit()
                     true

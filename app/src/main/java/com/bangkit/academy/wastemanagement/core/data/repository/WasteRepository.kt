@@ -105,15 +105,23 @@ class WasteRepository constructor(
             override fun loadFromDB(): Flow<List<Predict>> =
                 localDataSource.getPredictionHistory().map { predictMapper.mapFromCacheEntityList(it) }
 
-            override fun shouldFetch(data: List<Predict>?): Boolean =
-                false
+            override fun shouldFetch(data: List<Predict>?): Boolean = false
 
-            override suspend fun createCall(): Flow<ApiResponse<List<PredictResponse>>> = emptyFlow()
+            override suspend fun createCall(): Flow<ApiResponse<List<PredictResponse>>> {
+                TODO("Not yet implemented")
+            }
+
             override suspend fun saveCallResult(data: List<PredictResponse>) {
-
+                TODO("Not yet implemented")
             }
 
         }.asFlow()
+
+    override fun deletePredictionHistory(prediction: Predict) {
+        CoroutineScope(Dispatchers.IO).launch {
+            localDataSource.deletePredictionHistory(predictMapper.mapFromDomain(prediction))
+        }
+    }
 
     override fun setImagePrediction(prediction: Predict, imageUrl: String, history: Boolean) {
         CoroutineScope(Dispatchers.IO).launch {

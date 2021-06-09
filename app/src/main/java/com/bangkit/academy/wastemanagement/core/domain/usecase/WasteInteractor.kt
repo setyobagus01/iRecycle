@@ -18,6 +18,7 @@ class WasteInteractor @Inject constructor(private val wasteRepository: IWasteRep
 
     override fun getPrediction(pic: File): Flow<DataState<List<Predict>>> = wasteRepository.getPrediction(pic)
     override fun getPredictionHistory(): Flow<DataState<List<Predict>>> = wasteRepository.getPredictionHistory()
+    override fun deletePredictionHistory(prediction: Predict) = wasteRepository.deletePredictionHistory(prediction)
 
     override fun setImagePrediction(prediction: Predict, imageUrl: String, history: Boolean) {
         return wasteRepository.setImagePrediction(prediction, imageUrl, history)

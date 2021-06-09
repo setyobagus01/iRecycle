@@ -27,6 +27,9 @@ interface WasteDao {
     @Query("SELECT * FROM predictEntity WHERE history = 1")
     fun getPredictionHistory(): Flow<List<PredictEntity>>
 
+    @Delete
+    suspend fun deletePredictionHistory(prediction: PredictEntity)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPrediction(prediction: List<PredictEntity>)
 
