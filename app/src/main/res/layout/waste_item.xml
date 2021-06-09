@@ -4,44 +4,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="128dp"
     android:layout_marginTop="@dimen/distance_between_items"
+    android:layout_margin="4dp"
     android:background="@drawable/ic_shape_light">
 
     <TextView
         android:id="@+id/wasteName"
-        style="@style/Theme.3RWaste.TextView.Medium"
+        style="@style/Theme.3RWaste.Headline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="16dp"
         android:text="@string/biological"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.188"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/scannedCount"
-        style="@style/Theme.3RWaste.TextView"
+        style="@style/Theme.3RWaste.Headline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:text="@string/item_count"
-        app:layout_constraintBottom_toBottomOf="@+id/wasteName"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/wasteName"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wasteName" />
 
-    <ImageView
-        android:id="@+id/imageView"
+    <TextView
+        style="@style/Theme.3RWaste.TextView.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="4dp"
+        android:text="Items"
         app:layout_constraintBottom_toBottomOf="@+id/scannedCount"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/scannedCount" />
+        app:layout_constraintStart_toEndOf="@+id/scannedCount" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

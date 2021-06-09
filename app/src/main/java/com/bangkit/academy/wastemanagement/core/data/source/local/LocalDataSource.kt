@@ -1,9 +1,6 @@
 package com.bangkit.academy.wastemanagement.core.data.source.local
 
-import com.bangkit.academy.wastemanagement.core.data.source.local.entity.ContentEntity
-import com.bangkit.academy.wastemanagement.core.data.source.local.entity.ImageEntity
-import com.bangkit.academy.wastemanagement.core.data.source.local.entity.PredictEntity
-import com.bangkit.academy.wastemanagement.core.data.source.local.entity.WasteEntity
+import com.bangkit.academy.wastemanagement.core.data.source.local.entity.*
 import com.bangkit.academy.wastemanagement.core.data.source.local.room.WasteDao
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -30,9 +27,11 @@ class LocalDataSource @Inject constructor(private val wasteDao: WasteDao) {
 
     }
 
-    fun getPredictionHistory(): Flow<List<PredictEntity>> = wasteDao.getPredictionHistory()
+    fun getHistory(): Flow<List<HistoryEntity>> = wasteDao.getHistory()
 
-    suspend fun deletePredictionHistory(prediction: PredictEntity) = wasteDao.deletePredictionHistory(prediction)
+    suspend fun insertHistory(history: HistoryEntity) = wasteDao.insertHistory(history)
+
+    suspend fun deletePredictionHistory(history: HistoryEntity) = wasteDao.deletePredictionHistory(history)
 
     fun getImages(): Flow<List<ImageEntity>> = wasteDao.getImages()
 

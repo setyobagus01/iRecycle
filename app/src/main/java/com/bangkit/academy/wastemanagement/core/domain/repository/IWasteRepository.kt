@@ -1,10 +1,7 @@
 package com.bangkit.academy.wastemanagement.core.domain.repository
 
 import com.bangkit.academy.wastemanagement.core.data.DataState
-import com.bangkit.academy.wastemanagement.core.domain.model.Content
-import com.bangkit.academy.wastemanagement.core.domain.model.Image
-import com.bangkit.academy.wastemanagement.core.domain.model.Predict
-import com.bangkit.academy.wastemanagement.core.domain.model.Waste
+import com.bangkit.academy.wastemanagement.core.domain.model.*
 import kotlinx.coroutines.flow.Flow
 import java.io.File
 
@@ -17,9 +14,9 @@ interface IWasteRepository {
 
     fun getPrediction(pic: File): Flow<DataState<List<Predict>>>
 
-    fun getPredictionHistory(): Flow<DataState<List<Predict>>>
+    fun getPredictionHistory(): Flow<DataState<List<History>>>
 
-    fun deletePredictionHistory(prediction: Predict)
+    fun deletePredictionHistory(history: History)
 
     fun setImagePrediction(prediction: Predict, imageUrl: String, history: Boolean)
 

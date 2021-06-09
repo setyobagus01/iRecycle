@@ -24,38 +24,6 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Action Bar
-//        val callback = object : ActionMode.Callback {
-//
-//            override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
-//                menuInflater.inflate(R.menu.detail_menu, menu)
-//                return true
-//            }
-//
-//            override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean {
-//                return false
-//            }
-//
-//            override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
-//                return when (item?.itemId) {
-//                    R.id.action_back -> {
-//                        // Handle share icon press
-//                        true
-//                    }
-//                    R.id.action_settings -> {
-//                        // Handle delete icon press
-//                        true
-//                    }
-//                    else -> false
-//                }
-//            }
-//
-//            override fun onDestroyActionMode(mode: ActionMode?) {
-//            }
-//        }
-//
-//        val actionMode = startSupportActionMode(callback)
-//        actionMode?.title = "1 selected"
     }
 
 

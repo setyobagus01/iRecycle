@@ -3,14 +3,14 @@ package com.bangkit.academy.wastemanagement.core.ui.history
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.academy.wastemanagement.core.domain.model.Predict
+import com.bangkit.academy.wastemanagement.core.domain.model.History
 import com.bangkit.academy.wastemanagement.databinding.HistoryItemBinding
 import com.bumptech.glide.Glide
 
 class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
-    private val histories = ArrayList<Predict>()
+    private val histories = ArrayList<History>()
 
-    fun setData(data: List<Predict>?) {
+    fun setData(data: List<History>?) {
         if (data == null) return
         histories.clear()
         histories.addAll(data)
@@ -19,10 +19,10 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
 
     inner class HistoryViewHolder(private val binding: HistoryItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            fun bind (predict: Predict) {
+            fun bind (history: History) {
                 with(binding) {
                     Glide.with(itemView.context)
-                        .load(predict.imageUrl)
+                        .load(history.imageUrl)
                         .into(imagePrediction)
                 }
             }
@@ -41,5 +41,5 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
 
     override fun getItemCount(): Int = histories.size
 
-    fun getSwipedData(swipedPosition: Int): Predict? = histories[swipedPosition]
+    fun getSwipedData(swipedPosition: Int): History? = histories[swipedPosition]
 }

@@ -2,7 +2,7 @@ package com.bangkit.academy.wastemanagement.history
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.bangkit.academy.wastemanagement.core.domain.model.Predict
+import com.bangkit.academy.wastemanagement.core.domain.model.History
 import com.bangkit.academy.wastemanagement.core.domain.usecase.WasteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -12,8 +12,8 @@ class HistoryViewModel @Inject constructor(private val wasteUseCase: WasteUseCas
 
     val history = wasteUseCase.getPredictionHistory().asLiveData()
 
-    fun deleteHistory(prediction: Predict) {
-        wasteUseCase.deletePredictionHistory(prediction)
+    fun deleteHistory(history: History) {
+        wasteUseCase.deletePredictionHistory(history)
     }
 
 }

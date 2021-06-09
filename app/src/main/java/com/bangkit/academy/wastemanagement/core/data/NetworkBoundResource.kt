@@ -1,6 +1,5 @@
 package com.bangkit.academy.wastemanagement.core.data
 
-import android.util.Log
 import com.bangkit.academy.wastemanagement.core.data.source.remote.network.ApiResponse
 import kotlinx.coroutines.flow.*
 
@@ -13,12 +12,10 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
             when (val apiResponse = createCall().first()) {
                 is ApiResponse.Success -> {
                     saveCallResult(apiResponse.data)
-                    Log.d("aaaaa", apiResponse.data.toString())
                     emitAll(loadFromDB().map { DataState.Success(it) })
                 }
                 is ApiResponse.Empty -> {
                     emitAll(loadFromDB().map {
-                        Log.d("bbbbb", it.toString())
                         DataState.Success(it)
                     })
                 }

@@ -31,8 +31,6 @@ class DetailResult : AppCompatActivity() {
         setContentView(binding?.root)
 
         binding?.circularProgressBar1?.progress = 0f
-        binding?.circularProgressBar2?.progress = 0f
-        binding?.circularProgressBar3?.progress = 0f
 
         val result = intent.getParcelableArrayListExtra<Predict>(EXTRA_DATA)
         val image = intent.getStringExtra(EXTRA_IMAGE)
@@ -45,66 +43,70 @@ class DetailResult : AppCompatActivity() {
 
         if (result != null) {
 
+            val filteredResult = result.maxByOrNull { it.prediction }
 
-            binding?.result1?.text = result[0].wasteType.capitalize()
-            binding?.circularProgressBar1?.setProgressWithAnimation(result[0].prediction, 5000L, null, 3000L)
-            binding?.modelPercentage1?.text = getString(R.string.percent, BigDecimal(result[0].prediction.toDouble()).setScale(2, RoundingMode.HALF_EVEN)).replace("\\s".toRegex(), "")
+            Log.d("awdawd", filteredResult.toString())
 
-            binding?.result2?.text = result[1].wasteType.capitalize()
-            binding?.circularProgressBar2?.setProgressWithAnimation(result[1].prediction, 5000L)
-            binding?.modelPercentage2?.text = getString(R.string.percent, BigDecimal(result[1].prediction.toDouble()).setScale(2, RoundingMode.HALF_EVEN)).replace("\\s".toRegex(), "")
-
-            binding?.result3?.text = result[2].wasteType.capitalize()
-            binding?.circularProgressBar3?.setProgressWithAnimation(result[2].prediction, 5000L)
-            binding?.modelPercentage3?.text = getString(R.string.percent, BigDecimal(result[2].prediction.toDouble()).setScale(2, RoundingMode.HALF_EVEN)).replace("\\s".toRegex(), "")
-
-            detailResultViewModel.getWasteType(result[0].wasteType.capitalize())
-            if (image != null) {
-                detailResultViewModel.savedToHistory(result[0], image)
-            }
-
-            detailResultViewModel.waste.observe(this, { waste ->
-                if (waste != null) {
-                    when (waste) {
-                        is DataState.Loading -> {
-
-                        }
-
-                        is DataState.Success -> {
-                            Log.d("kentulllllllll coook", waste.data.toString())
-                            binding?.wasteType?.text = waste.data?.wasteType
-                            binding?.wasteDescription?.text = waste.data?.description
+            if (filteredResult != null) {
+                binding?.result1?.text = filteredResult.wasteType.capitalize()
+                binding?.circularProgressBar1?.setProgressWithAnimation(
+                    filteredResult.prediction,
+                    5000L,
+                    null,
+                    3000L
+                )
+                binding?.modelPercentage1?.text = getString(
+                    R.string.percent,
+                    BigDecimal(filteredResult.prediction.toDouble()).setScale(
+                        2,
+                        RoundingMode.HALF_EVEN
+                    )
+                ).replace("\\s".toRegex(), "")
 
 
-                        }
+                detailResultViewModel.getWasteType(filteredResult.wasteType.capitalize())
+                if (image != null) {
+                    detailResultViewModel.savedToHistory(filteredResult, image)
+                }
 
-                        is DataState.Error -> {
+                detailResultViewModel.waste.observe(this, { waste ->
+                    if (waste != null) {
+                        when (waste) {
+                            is DataState.Loading -> {
 
+                            }
+
+                            is DataState.Success -> {
+                                binding?.wasteType?.text = waste.data?.wasteType
+                                binding?.wasteDescription?.text = waste.data?.description
+
+
+                            }
+
+                            is DataState.Error -> {
+
+                            }
                         }
                     }
+                })
+
+                binding?.btnSubmit?.setOnClickListener {
+
+                    val intent = Intent(this, ContentActivity::class.java).apply {
+                        putExtra(ContentActivity.EXTRA_TYPE, filteredResult.wasteType.capitalize())
+                    }
+                    startActivity(intent)
+
                 }
-            })
-
-            binding?.btnSubmit?.setOnClickListener {
-
-
-                val intent = Intent(this, ContentActivity::class.java).apply {
-                    putExtra(ContentActivity.EXTRA_TYPE, result[0].wasteType.capitalize())
-                }
-                startActivity(intent)
 
             }
         }
-
         binding?.topAppBar?.setNavigationOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
-
-        Log.d("bisa coook", result.toString())
     }
-
 
 
     companion object {

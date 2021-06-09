@@ -10,10 +10,7 @@ import com.bangkit.academy.wastemanagement.core.data.source.remote.network.ApiRe
 import com.bangkit.academy.wastemanagement.core.data.source.remote.network.response.ContentResponse
 import com.bangkit.academy.wastemanagement.core.data.source.remote.network.response.PredictResponse
 import com.bangkit.academy.wastemanagement.core.data.source.remote.network.response.WasteResponse
-import com.bangkit.academy.wastemanagement.core.domain.model.Content
-import com.bangkit.academy.wastemanagement.core.domain.model.Image
-import com.bangkit.academy.wastemanagement.core.domain.model.Predict
-import com.bangkit.academy.wastemanagement.core.domain.model.Waste
+import com.bangkit.academy.wastemanagement.core.domain.model.*
 import com.bangkit.academy.wastemanagement.core.domain.repository.IWasteRepository
 import com.bangkit.academy.wastemanagement.core.utils.ContentMapper
 import com.bangkit.academy.wastemanagement.core.utils.PredictMapper
@@ -39,7 +36,6 @@ class WasteRepository constructor(
         object : NetworkBoundResource<List<Waste>, List<WasteResponse>>() {
             override fun loadFromDB(): Flow<List<Waste>> {
                 return localDataSource.getWaste().map {
-                    Log.d("Log babi", it.toString())
                     wasteMapper.mapFromCacheEntityList(it) }
             }
 
@@ -100,32 +96,30 @@ class WasteRepository constructor(
 
         }.asFlow()
 
-    override fun getPredictionHistory(): Flow<DataState<List<Predict>>> =
-        object : NetworkBoundResource<List<Predict>, List<PredictResponse>>() {
-            override fun loadFromDB(): Flow<List<Predict>> =
-                localDataSource.getPredictionHistory().map { predictMapper.mapFromCacheEntityList(it) }
+    override fun getPredictionHistory(): Flow<DataState<List<History>>> =
+        object : NetworkBoundResource<List<History>, List<PredictResponse>>() {
+            override fun loadFromDB(): Flow<List<History>> =
+                localDataSource.getHistory().map { predictMapper.mapFromEntityToHistoryDomain(it) }
 
-            override fun shouldFetch(data: List<Predict>?): Boolean = false
+            override fun shouldFetch(data: List<History>?): Boolean = false
 
-            override suspend fun createCall(): Flow<ApiResponse<List<PredictResponse>>> {
-                TODO("Not yet implemented")
-            }
+            override suspend fun createCall(): Flow<ApiResponse<List<PredictResponse>>> = emptyFlow()
 
             override suspend fun saveCallResult(data: List<PredictResponse>) {
-                TODO("Not yet implemented")
+
             }
 
         }.asFlow()
 
-    override fun deletePredictionHistory(prediction: Predict) {
+    override fun deletePredictionHistory(history: History) {
         CoroutineScope(Dispatchers.IO).launch {
-            localDataSource.deletePredictionHistory(predictMapper.mapFromDomain(prediction))
+            localDataSource.deletePredictionHistory(predictMapper.mapFromDomainHistory(history))
         }
     }
 
     override fun setImagePrediction(prediction: Predict, imageUrl: String, history: Boolean) {
         CoroutineScope(Dispatchers.IO).launch {
-            localDataSource.updatePrediction(predictMapper.mapFromDomain(prediction), imageUrl, history)
+            localDataSource.insertHistory(predictMapper.mapFromDomainToHistory(prediction, imageUrl, history))
         }
     }
 

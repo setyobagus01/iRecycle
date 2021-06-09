@@ -45,45 +45,9 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         actionBar?.elevation = 0f
 
-        val extraFragment = intent.getIntExtra(EXTRA_FRAGMENT,0)
-
-//        when (extraFragment) {
-//            1 -> {
-//
-//                val contentFragment = ContentFragment()
-//                val mBundle = Bundle()
-//                mBundle.putString(ContentFragment.EXTRA_TYPE, extraType)
-//                contentFragment.arguments = mBundle
-//                supportFragmentManager.beginTransaction()
-//                    .replace(R.id.nav_kontol, contentFragment)
-//                    .addToBackStack(null)
-//                    .commit()
-//                Toast.makeText(this, "Hooray kontol", Toast.LENGTH_SHORT).show()
-//            }
-//            else -> {
-//                supportFragmentManager.beginTransaction()
-//                    .add(R.id.nav_host_fragment, HomeFragment())
-//                    .commit()
-//            }
-//        }
-
         supportFragmentManager.beginTransaction()
             .add(R.id.nav_host_fragment, HomeFragment())
             .commit()
-
-
-
-
-//        val navController = navHostFragment.navController
-//        val navGraph = navController.navInflater.inflate(R.navigation.mobile_navigation)
-//        navGraph.startDestination = R.id.navigation_home
-//        navController.graph = navGraph
-//
-//        val navController = findNavController(R.id.nav_host_fragment)
-//        val appBarConfiguration = AppBarConfiguration(setOf(
-//            R.id.navigation_home, R.id.navigation_notifications, R.id.contentFragment))
-//        setupActionBarWithNavController(navController, appBarConfiguration)
-//        navView.setupWithNavController(navController)
 
         navView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -111,15 +75,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
-//        val navController = navHostFragment.navController
-//
-//        val navGraph = navController.navInflater.inflate(R.navigation.mobile_navigation)
-//        navGraph.startDestination = R.id.navigation_home
-//        navController.graph = navGraph
-//        // Passing each menu ID as a set of Ids because each
-//        // menu should be considered as top level destinations.
-
         supportActionBar?.title = "3R Waste"
 
         binding?.fab?.setOnClickListener {
@@ -131,7 +86,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun openCamera() {
         ImagePicker.with(this)
-            .cameraOnly()
             .crop()
             .compress(1024)//User can only capture image using Camera
             .setImageProviderInterceptor { imageProvider -> //Intercept ImageProvider
@@ -173,11 +127,9 @@ class MainActivity : AppCompatActivity() {
                     when (results) {
                         is DataState.Loading -> {
                             Toast.makeText(this@MainActivity, "Upload", Toast.LENGTH_SHORT).show()
-                            Log.d("Bangsat capek ajg", "kontol")
 
                         }
                         is DataState.Success -> {
-                            Log.d("Horrayyyy Bisa", results.data.toString())
                             val intent = Intent(this@MainActivity, DetailResult::class.java).apply {
                                 putParcelableArrayListExtra(
                                     DetailResult.EXTRA_DATA,

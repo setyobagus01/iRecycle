@@ -2,6 +2,7 @@ package com.bangkit.academy.wastemanagement.core.domain.usecase
 
 import com.bangkit.academy.wastemanagement.core.data.DataState
 import com.bangkit.academy.wastemanagement.core.domain.model.Content
+import com.bangkit.academy.wastemanagement.core.domain.model.History
 import com.bangkit.academy.wastemanagement.core.domain.model.Predict
 import com.bangkit.academy.wastemanagement.core.domain.model.Waste
 import com.bangkit.academy.wastemanagement.core.domain.repository.IWasteRepository
@@ -17,8 +18,8 @@ class WasteInteractor @Inject constructor(private val wasteRepository: IWasteRep
     override fun getWasteByType(wasteType: String): Flow<DataState<Waste>> = wasteRepository.getWasteByType(wasteType)
 
     override fun getPrediction(pic: File): Flow<DataState<List<Predict>>> = wasteRepository.getPrediction(pic)
-    override fun getPredictionHistory(): Flow<DataState<List<Predict>>> = wasteRepository.getPredictionHistory()
-    override fun deletePredictionHistory(prediction: Predict) = wasteRepository.deletePredictionHistory(prediction)
+    override fun getPredictionHistory(): Flow<DataState<List<History>>> = wasteRepository.getPredictionHistory()
+    override fun deletePredictionHistory(history: History) = wasteRepository.deletePredictionHistory(history)
 
     override fun setImagePrediction(prediction: Predict, imageUrl: String, history: Boolean) {
         return wasteRepository.setImagePrediction(prediction, imageUrl, history)

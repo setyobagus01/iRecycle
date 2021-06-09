@@ -1,10 +1,7 @@
 package com.bangkit.academy.wastemanagement.core.data.source.local.room
 
 import androidx.room.*
-import com.bangkit.academy.wastemanagement.core.data.source.local.entity.ContentEntity
-import com.bangkit.academy.wastemanagement.core.data.source.local.entity.ImageEntity
-import com.bangkit.academy.wastemanagement.core.data.source.local.entity.PredictEntity
-import com.bangkit.academy.wastemanagement.core.data.source.local.entity.WasteEntity
+import com.bangkit.academy.wastemanagement.core.data.source.local.entity.*
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -24,17 +21,20 @@ interface WasteDao {
     @Query("SELECT * FROM predictEntity")
     fun getPrediction(): Flow<List<PredictEntity>>
 
-    @Query("SELECT * FROM predictEntity WHERE history = 1")
-    fun getPredictionHistory(): Flow<List<PredictEntity>>
-
     @Delete
-    suspend fun deletePredictionHistory(prediction: PredictEntity)
+    suspend fun deletePredictionHistory(history: HistoryEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPrediction(prediction: List<PredictEntity>)
 
     @Update
     suspend fun updatePrediction(prediction: PredictEntity)
+
+    @Query("SELECT * FROM historyEntity WHERE history = 1")
+    fun getHistory(): Flow<List<HistoryEntity>>
+
+    @Insert
+    suspend fun insertHistory(history: HistoryEntity)
 
     @Query("SELECT * FROM imageEntity")
     fun getImages(): Flow<List<ImageEntity>>

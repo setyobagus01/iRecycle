@@ -121,6 +121,11 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
+    <style name="Theme.3RWaste.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="TextAppearance.3RWaste.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="fontFamily">@font/mavenpro_bold</item>
         <item name="android:fontFamily">@font/mavenpro_bold</item>

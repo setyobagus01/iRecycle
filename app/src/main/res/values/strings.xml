@@ -14,4 +14,5 @@
     <string name="dummy_description">Biological waste is waste that consists mainly of organic materials. This includes green waste, food waste as well as paper waste, and even biodegradable plastics.</string>
     <string name="submit">Submit</string>
     <string name="percent">%1$s %%</string>
+    <string name="history">History</string>
 </resources>
